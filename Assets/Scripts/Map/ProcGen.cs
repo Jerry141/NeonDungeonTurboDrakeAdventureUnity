@@ -13,6 +13,7 @@ sealed class ProcGen : MonoBehaviour
         int roomMaxSize,
         int maxRooms,
         int maxMonstersPerRoom,
+        int maxItemsPerRoom,
         List<RectangularRoom> rooms)
     {
         for (int roomNum = 0; roomNum < maxRooms; roomNum++)
@@ -65,7 +66,7 @@ sealed class ProcGen : MonoBehaviour
             {
             }
 
-            PlaceActors(newRoom, maxMonstersPerRoom);
+            PlaceEntities(newRoom, maxMonstersPerRoom, maxItemsPerRoom);
 
             rooms.Add(newRoom);
         }
@@ -145,9 +146,10 @@ sealed class ProcGen : MonoBehaviour
     }
 
 
-    private void PlaceActors(RectangularRoom newRoom, int maximumMonsters)
+    private void PlaceEntities(RectangularRoom newRoom, int maximumMonsters, int maximumItems)
     {
         int numberOfMonsters = Random.Range(0, maximumMonsters + 1);
+        int numberOfItems = Random.Range(0, maximumItems + 1);
 
         for (int monster = 0; monster < numberOfMonsters;)
         {
@@ -178,6 +180,31 @@ sealed class ProcGen : MonoBehaviour
                 MapManager.instance.CreateEntity("Templar", new Vector2(x, y));
             }
             monster++;
+        }
+
+        for (int item = 0; item < numberOfItems;)
+        {
+            int x = Random.Range(newRoom.X, newRoom.X + newRoom.Width);
+            int y = Random.Range(newRoom.Y, newRoom.Y + newRoom.Height);
+
+            if (x == newRoom.X || x == newRoom.X + newRoom.Width - 1 || y == newRoom.Y || y == newRoom.Y + newRoom.Height - 1)
+            {
+                continue;
+            }
+
+            for (int entity = 0; entity < GameManager.instance.Entities.Count; entity++)
+            {
+                Vector3Int pos = MapManager.instance.FloorMap.WorldToCell(GameManager.instance.Entities[entity].transform.position);
+
+                if (pos.x == x && pos.y == y)
+                {
+                    return;
+                }
+            }
+
+            MapManager.instance.CreateEntity("Neon Blood Vial", new Vector2(x, y));
+
+            item++;
         }
     }
 }
