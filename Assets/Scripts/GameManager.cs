@@ -50,13 +50,13 @@ public class GameManager : MonoBehaviour{
         }
         else
         {
-            if (actors[actorNum].GetComponent<HostileEnemy>())
+            if (actors[actorNum].AI != null)
             {
-                actors[actorNum].GetComponent<HostileEnemy>().RunAI();
+                actors[actorNum].AI.RunAI();
             }
             else
             {
-                Action.SkipAction();
+                Action.WaitAction();
             }
         }
     }
@@ -121,9 +121,9 @@ public class GameManager : MonoBehaviour{
     }
 
     // blocking movement by NPC
-    public Actor GetBlockingActorAtLocation(Vector3 location)
+    public Actor GetActorAtLocation(Vector3 location)
     {
-        foreach (Actor actor in Actors)
+        foreach (Actor actor in actors)
         {
             if (actor.BlocksMovement && actor.transform.position == location)
             {

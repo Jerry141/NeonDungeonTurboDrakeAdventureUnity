@@ -202,7 +202,24 @@ sealed class ProcGen : MonoBehaviour
                 }
             }
 
-            MapManager.instance.CreateEntity("Neon Blood Vial", new Vector2(x, y));
+            float randomValue = Random.value;
+
+            if (randomValue < 0.7f)
+            {
+                MapManager.instance.CreateEntity("Neon Blood Vial", new Vector2(x, y));
+            }
+            else if (randomValue < 0.8f)
+            {
+                MapManager.instance.CreateEntity("Neon Ball Chip", new Vector2(x, y));
+            }
+            else if (randomValue < 0.9f)
+            {
+                MapManager.instance.CreateEntity("Confusion Chip", new Vector2(x, y));
+            }
+            else
+            {
+                MapManager.instance.CreateEntity("Neon Bolt Chip", new Vector2(x, y));
+            }
 
             item++;
         }

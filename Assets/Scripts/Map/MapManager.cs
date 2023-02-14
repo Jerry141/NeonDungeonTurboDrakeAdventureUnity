@@ -97,6 +97,18 @@ public class MapManager : MonoBehaviour
                 Instantiate(Resources.Load<GameObject>("Neon Blood Vial"),
                     new Vector3(position.x + 0.5f, position.y + 0.5f, 0), Quaternion.identity).name = "Neon Blood Vial";
                 break;
+            case "Neon Ball Chip":
+                Instantiate(Resources.Load<GameObject>("Neon Ball Chip"),
+                    new Vector3(position.x + 0.5f, position.y + 0.5f, 0), Quaternion.identity).name = "Neon Ball Chip";
+                break;
+            case "Neon Bolt Chip":
+                Instantiate(Resources.Load<GameObject>("Neon Bolt Chip"),
+                    new Vector3(position.x + 0.5f, position.y + 0.5f, 0), Quaternion.identity).name = "Neon Bolt Chip";
+                break;
+            case "Confusion Chip":
+                Instantiate(Resources.Load<GameObject>("Confusion Chip"),
+                    new Vector3(position.x + 0.5f, position.y + 0.5f, 0), Quaternion.identity).name = "Confusion Chip";
+                break;
             default:
                 Debug.Log("Entity not found");
                 break;
@@ -168,5 +180,23 @@ public class MapManager : MonoBehaviour
             fogMap.SetTile(pos, fogTile);
             fogMap.SetTileFlags(pos, TileFlags.None);
         }
+    }
+
+    // Checking if the position is valid
+    public bool IsValidPosition(Vector3 futurePosition)
+    {
+        // checking the future position from the map manager based on futurePosition
+        Vector3Int gridPosition = floorMap.WorldToCell(futurePosition);
+
+        // Checking if the position that player wants to move is valid
+        // check if it is in bounds
+        // check if it is an obstacle
+        // check if it is current transform position (if player didn't move)
+        // If any of the above is true, do not move character
+        if (!InBounds(gridPosition.x, gridPosition.y) ||
+                ObstacleMap.HasTile(gridPosition))
+            return false;
+
+        return true;
     }
 }   

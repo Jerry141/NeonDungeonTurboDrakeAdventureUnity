@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3550611948427262387}
   - component: {fileID: 4487995675933771075}
   - component: {fileID: 8266055801508224048}
-  - component: {fileID: 1048830698759049501}
+  - component: {fileID: -4582696022939862156}
   m_Layer: 0
-  m_Name: Neon Blood Vial
+  m_Name: Confusion Chip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 1944137769
   m_SortingLayer: 3
   m_SortingOrder: 1
-  m_Sprite: {fileID: 505631399, guid: 245c09b82eb6240f89b9f8f8ec8f540f, type: 3}
-  m_Color: {r: 1, g: 0.16078432, b: 0.45882353, a: 1}
+  m_Sprite: {fileID: -688783685, guid: 245c09b82eb6240f89b9f8f8ec8f540f, type: 3}
+  m_Color: {r: 0.9490196, g: 0.13333334, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blocksMovement: 0
-  consumable: {fileID: 1048830698759049501}
---- !u!114 &1048830698759049501
+  consumable: {fileID: -4582696022939862156}
+--- !u!114 &-4582696022939862156
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 908723362069518403}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35669de557c1e4cebabbccd1163a340c, type: 3}
+  m_Script: {fileID: 11500000, guid: 46134b963ddc74a458ad076cd2844a2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 4
+  numberOfTurns: 10
