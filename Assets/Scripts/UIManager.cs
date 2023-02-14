@@ -51,20 +51,24 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    // First message to the player
     private void Start() => AddMessage("Turbo Drake rise once again to reclaim his powers!", "#f222ff");
 
 
+    // setting up the Player's max hp
     public void SetHealthMax(int maxHp)
     {
         hpSlider.maxValue = maxHp;
     }
 
+    // setting up current HP and text to show on the HP bar
     public void SetHealth(int hp, int maxHP)
     {
         hpSlider.value = hp;
         hpSliderText.text = $"HP: {hp}/{maxHP}";
     }
 
+    // toggling Menu
     public void ToggleMenu()
     {
         if (isMenuOpen)
@@ -90,19 +94,22 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    // message history menu
     public void ToggleMessageHistory()
     {
         messageHistory.SetActive(!messageHistory.activeSelf);
         isMessageHistoryOpen = messageHistory.activeSelf;
     }
 
+    // inventory
     public void ToggleInventory(Actor actor = null)
     {
         inventory.SetActive(!inventory.activeSelf);
         isMenuOpen = inventory.activeSelf;
         isInventoryOpen = inventory.activeSelf;
 
-        if (!isMenuOpen)
+        // if menu is open - update the content - same for drop menu
+        if (isMenuOpen)
         {
             UpdateMenu(actor, inventoryContent);
         }
@@ -114,23 +121,29 @@ public class UIManager : MonoBehaviour
         isMenuOpen = dropMenu.activeSelf;
         isDropMenuOpen = dropMenu.activeSelf;
 
-        if (!isMenuOpen)
+        if (isMenuOpen)
         {
             UpdateMenu(actor, dropMenuContent);
         }
     }
 
+    // adding a messages to player
     public void AddMessage(string newMessage, string colorHex)
     {
+        // checking if last message is the same as new message
         if (lastMessage == newMessage)
         {
+            // getting the last message from the history and from last five messages
             TextMeshProUGUI messageHistoryLastChild = messageHistoryContent.transform.GetChild(messageHistoryContent.transform.childCount - 1).GetComponent<TextMeshProUGUI>();
             TextMeshProUGUI lastFiveHistoryLastChild = lastFiveMessagesContent.transform.GetChild(lastFiveMessagesContent.transform.childCount - 1).GetComponent<TextMeshProUGUI>();
+
+            // setting the message by adding the counter if the messages are the same
             messageHistoryLastChild.text = $"{newMessage} (x{++sameMessageCount})";
             lastFiveHistoryLastChild.text = $"{newMessage} (x{sameMessageCount}";
 
             return;
         }
+        // if same message count is more than 0 - set as 0
         else if (sameMessageCount > 0)
         {
             sameMessageCount = 0;
@@ -138,6 +151,7 @@ public class UIManager : MonoBehaviour
 
         lastMessage = newMessage;
 
+        // loading the message resource and setting up text color and position based on message history
         TextMeshProUGUI messagePrefab = Instantiate(Resources.Load<TextMeshProUGUI>("Message")) as TextMeshProUGUI;
         messagePrefab.text = newMessage;
         messagePrefab.color = GetColorFromHex(colorHex);
@@ -171,6 +185,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    // updating the inventory and drop menus
     private void UpdateMenu(Actor actor, GameObject menuContent)
     {
         for (int i = 0; i < menuContent.transform.childCount; i++)
