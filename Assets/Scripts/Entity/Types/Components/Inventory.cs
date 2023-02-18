@@ -15,6 +15,14 @@ public class Inventory : MonoBehaviour
     public List<Item> Items { get => items; }
 
 
+    public void Add(Item item)
+    {
+        items.Add(item);
+        item.transform.SetParent(transform);
+        GameManager.instance.RemoveEntity(item);
+    }
+    
+
     public void Drop(Item item)
     {
         items.Remove(item);

@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour{
 
     public Sprite DeadSprite { get => deadSprite; }
 
-    // Start is called before the first frame update
+
     void Awake()
     {
         if (instance == null)
