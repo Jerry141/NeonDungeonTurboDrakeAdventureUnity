@@ -21,7 +21,7 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    private void NewGame()
+    public void NewGame()
     {
         if (SaveManager.instance.HasSaveAvailable())
         {

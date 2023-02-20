@@ -51,7 +51,7 @@ public class ItemState : EntityState
 {
     [SerializeField] private string parent;
 
-    public string Parent { get => parent; set => parent = value }
+    public string Parent { get => parent; set => parent = value; }
 
     public ItemState(EntityType type = EntityType.Item, string name = "",
         bool blocksMovement = false, bool isVisible = false,
