@@ -32,7 +32,6 @@ public class Entity : MonoBehaviour
 }
 
 [System.Serializable]
-
 public class EntityState
 {
     public enum EntityType

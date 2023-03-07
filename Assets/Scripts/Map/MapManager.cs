@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class MapManager : MonoBehaviour
 {
-
     public static MapManager instance;
 
     [Header("Map Settings")]
@@ -33,9 +32,9 @@ public class MapManager : MonoBehaviour
     [Header("Features")]
     [SerializeField] private List<RectangularRoom> rooms;
     [SerializeField] private List<Vector3Int> visibleTiles;
+    [SerializeField] private Dictionary<Vector3Int, TileData> tiles;
 
-    private Dictionary<Vector3Int, TileData> tiles;
-    private Dictionary<Vector2Int, Node> nodes = new Dictionary<Vector2Int, Node>();
+    private Dictionary<Vector2Int, Node> nodes = new();
 
 
     public int Width { get => width; }
@@ -48,7 +47,6 @@ public class MapManager : MonoBehaviour
     public Tilemap ObstacleMap { get => obstacleMap; }
     public Tilemap FogMap { get => fogMap; }
 
-    public List<RectangularRoom> Rooms { get => rooms; }
     public List<Vector3Int> VisibleTiles { get => visibleTiles; }
     public Dictionary<Vector2Int, Node> Nodes { get => nodes; set => nodes = value; }
 
@@ -90,7 +88,7 @@ public class MapManager : MonoBehaviour
         tiles = new Dictionary<Vector3Int, TileData>();
         visibleTiles = new List<Vector3Int>();
 
-        ProcGen procGen = gameObject.AddComponent<ProcGen>();
+        ProcGen procGen = new ProcGen();
         procGen.GenerateDungeon(width, height, roomMaxSize, roomMinSize, maxRooms, maxMonstersPerRoom, maxItemsPerRoom, rooms);
 
         AddTileMapToDictionary(floorMap);
@@ -208,7 +206,7 @@ public class MapManager : MonoBehaviour
         return true;
     }
 
-    public MapState SaveState() => new MapState(tiles, rooms);
+    public MapState SaveState() => new(tiles, rooms);
 
     public void LoadState(MapState mapState)
     {

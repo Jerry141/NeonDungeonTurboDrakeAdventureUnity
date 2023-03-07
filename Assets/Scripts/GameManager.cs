@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour{
-
+public class GameManager : MonoBehaviour
+{
     public static GameManager instance;
 
     [Header("Time")]
     [SerializeField] private float baseTime = 0.1f;
     [SerializeField] private float delayTime; // read only
-    [SerializeField] private bool isPlayerTurn = true; // Player turn - true as game starts with players turn
-
 
     [Header("Entities")]
+    [SerializeField] private bool isPlayerTurn = true; // Player turn - true as game starts with players turn
     [SerializeField] private int actorNum = 0;
     [SerializeField] private List<Entity> entities;
     [SerializeField] private List<Actor> actors;
@@ -22,15 +21,12 @@ public class GameManager : MonoBehaviour{
     [SerializeField] private Sprite deadSprite;
 
     public bool IsPlayerTurn { get => isPlayerTurn; }
-
     public List<Entity> Entities { get => entities; }
-
     public List<Actor> Actors { get => actors; }
-
     public Sprite DeadSprite { get => deadSprite; }
 
 
-    void Awake()
+    private void Awake()
     {
         if (instance == null)
         {
@@ -98,7 +94,7 @@ public class GameManager : MonoBehaviour{
         StartCoroutine(TurnDelay());
     }
 
-    private IEnumerator TurnDelay()
+    public IEnumerator TurnDelay()
     {
         yield return new WaitForSeconds(delayTime);
         StartTurn();
@@ -125,7 +121,7 @@ public class GameManager : MonoBehaviour{
 
     public void RemoveEntity(Entity entity)
     {
-        entity.gameObject.SetActive(true);
+        entity.gameObject.SetActive(false);
         entities.Remove(entity);
     }
 
@@ -174,7 +170,7 @@ public class GameManager : MonoBehaviour{
             AddEntity(item);
         }
 
-        GameState gameState = new GameState(entities: entities.ConvertAll(x => x.SaveState()));
+        GameState gameState = new(entities: entities.ConvertAll(x => x.SaveState()));
 
         foreach (Item item in actors[0].Inventory.Items)
         {
@@ -211,7 +207,7 @@ public class GameManager : MonoBehaviour{
             yield return new WaitForEndOfFrame();
 
             string entityName = entityStates[entityState].Name.Contains("'s rotting corpse.") ?
-                entityStates[entityState].Name.Substring(entityStates[entityState].Name.LastIndexOf(' ') + 1) : entityStates[entityState].Name;
+                entityStates[entityState].Name[(entityStates[entityState].Name.LastIndexOf(' ') + 1)..] : entityStates[entityState].Name;
 
             if (entityStates[entityState].Type == EntityState.EntityType.Actor)
             {

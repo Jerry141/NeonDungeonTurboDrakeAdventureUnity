@@ -2,9 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour, Controls.IPlayerActions
+[RequireComponent(typeof(Actor))]
+sealed class Player : MonoBehaviour, Controls.IPlayerActions
 {
     private Controls controls;
+
     [SerializeField] private bool moveKeyDown;
     [SerializeField] private bool targetMode; // read only
     [SerializeField] private bool isSingleTarget; // read only
@@ -20,7 +22,7 @@ public class Player : MonoBehaviour, Controls.IPlayerActions
 
     private void OnDisble()
     {
-        controls.Player.SetCallbacks(this);
+        controls.Player.SetCallbacks(null);
         controls.Player.Disable();
     }
 
@@ -192,7 +194,9 @@ public class Player : MonoBehaviour, Controls.IPlayerActions
         if (!UIManager.instance.IsMenuOpen && !targetMode)
         {
             if (GameManager.instance.IsPlayerTurn && moveKeyDown && GetComponent<Actor>().IsAlive)
+            {
                 Move();
+            }
         }
     }
 

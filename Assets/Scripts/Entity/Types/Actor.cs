@@ -126,11 +126,9 @@ public class Actor : Entity
             fighter.LoadState(state.FighterState);
         }
     }
-
 }
 
 [System.Serializable]
-
 public class ActorState : EntityState
 {
     [SerializeField] private bool isAlive;
@@ -141,7 +139,7 @@ public class ActorState : EntityState
     public AIState CurrentAI { get => currentAI; set => currentAI = value; }
     public FighterState FighterState { get => fighterState; set => fighterState = value; }
 
-    public ActorState (EntityType type = EntityType.Actor, string name = "", bool blocksMovement = false,
+    public ActorState(EntityType type = EntityType.Actor, string name = "", bool blocksMovement = false,
         bool isVisible = false, Vector3 position = new Vector3(),
         bool isAlive = true, AIState currentAI = null, FighterState fighterState = null) : base(type, name, blocksMovement, isVisible, position)
     {

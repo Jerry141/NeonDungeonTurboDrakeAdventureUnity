@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -49,7 +47,7 @@ public class Fighter : MonoBehaviour
             }
             else
             {
-                UIManager.instance.AddMessage($"{name} as been slaughtered!", "#FFA500");
+                UIManager.instance.AddMessage($"{name} have been slaughtered!", "#FFA500");
             }
             GetComponent<Actor>().IsAlive = false;
         }

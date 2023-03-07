@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using OdinSerializer;
@@ -11,8 +10,8 @@ public class SaveManager : MonoBehaviour
     public static SaveManager instance;
 
     [SerializeField] private int currentFloor = 0;
-    [SerializeField] private string saveFileName = "NDTDA.save";
-    [SerializeField] private SaveData save = new SaveData();
+    [SerializeField] private string saveFileName = "saveThe.drake";
+    [SerializeField] private SaveData save = new();
 
 
     public int CurrentFloor { get => currentFloor; set => currentFloor = value; }
@@ -40,10 +39,7 @@ public class SaveManager : MonoBehaviour
         {
             return false;
         }
-        else
-        {
-            return true;
-        }
+        return true;
     }
 
     public void SaveGame()
@@ -102,7 +98,7 @@ public class SaveManager : MonoBehaviour
 
     public void UpdateScene(SceneState sceneState) => save.Scenes[currentFloor - 1] = sceneState;
 
-    public SceneState SaveState() => new SceneState(
+    public SceneState SaveState() => new(
         currentFloor,
         GameManager.instance.SaveState(),
         MapManager.instance.SaveState()
@@ -116,7 +112,6 @@ public class SaveManager : MonoBehaviour
 }
 
 [System.Serializable]
-
 public class SaveData
 {
     [SerializeField] private int savedFloor;
@@ -133,7 +128,6 @@ public class SaveData
 }
 
 [System.Serializable]
-
 public class SceneState
 {
     [SerializeField] private int floorNumber;
