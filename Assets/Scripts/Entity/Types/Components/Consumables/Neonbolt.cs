@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Neonbolt : Consumable
@@ -8,7 +6,7 @@ public class Neonbolt : Consumable
     [SerializeField] private int maximumRange = 5;
 
     public int Damage { get => damage; }
-    public int MaximumDamage { get => MaximumDamage; }
+    public int MaximumRange { get => maximumRange; }
 
     public override bool Activate(Actor consumer)
     {
@@ -26,6 +24,6 @@ public class Neonbolt : Consumable
         Consume(consumer);
         consumer.GetComponent<Player>().ToggleTargetMode();
 
-        return false;
+        return true;
     }
 }

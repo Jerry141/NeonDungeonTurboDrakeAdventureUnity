@@ -83,7 +83,7 @@ public class SaveManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("No save data for this floor.");
+                Debug.LogError("No save data for this floor.");
             }
         }
     }

@@ -30,6 +30,6 @@ public class Neonball : Consumable
         Consume(consumer);
         consumer.GetComponent<Player>().ToggleTargetMode();
 
-        return false;
+        return true;
     }
 }

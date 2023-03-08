@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -40,7 +38,7 @@ public class HostileEnemy : AI
 
                 if (targetDistance <= 1.5f)
                 {
-                    Action.MeeleAction(GetComponent<Actor>(), fighter.Target);
+                    Action.MeleeAction(GetComponent<Actor>(), fighter.Target);
                     return;
                 }
                 else

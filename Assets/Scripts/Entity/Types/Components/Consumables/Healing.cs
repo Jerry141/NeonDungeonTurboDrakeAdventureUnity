@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static Consumable;
-using static UnityEditor.Progress;
 
+[RequireComponent(typeof(Item))]
 public class Healing : Consumable
 {
     [SerializeField] private int amount = 0;

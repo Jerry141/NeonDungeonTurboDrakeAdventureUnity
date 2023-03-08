@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -12,10 +10,7 @@ public class AI : MonoBehaviour
 
     private void OnValidate() => aStar = GetComponent<AStar>();
 
-    public virtual void RunAI()
-    {
-
-    }
+    public virtual void RunAI() {}
 
     public void MoveAlongPath(Vector3Int targetPosition)
     {

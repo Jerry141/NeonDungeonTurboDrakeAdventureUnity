@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // never to be inherited
-sealed class ProcGen : MonoBehaviour
+sealed class ProcGen
 {
     // Generate new dungeon map
     public void GenerateDungeon(
@@ -62,9 +62,6 @@ sealed class ProcGen : MonoBehaviour
             {
                 TunnelBetween(rooms[rooms.Count - 1], newRoom);
             }
-            else
-            {
-            }
 
             PlaceEntities(newRoom, maxMonstersPerRoom, maxItemsPerRoom);
 
@@ -104,13 +101,13 @@ sealed class ProcGen : MonoBehaviour
             SetFloorTile(new Vector3Int(tunnelCoords[i].x, tunnelCoords[i].y));
 
             // set the floor
-            MapManager.instance.FloorMap.SetTile(new Vector3Int(tunnelCoords[i].x,
-                tunnelCoords[i].y, 0), MapManager.instance.FloorTile);
+            //MapManager.instance.FloorMap.SetTile(new Vector3Int(tunnelCoords[i].x,
+            //    tunnelCoords[i].y, 0), MapManager.instance.FloorTile);
 
             // set the walls
-            for (int x = tunnelCoords[i].x -  1; x <= tunnelCoords[i].x + 1; x++)
+            for (int x = tunnelCoords[i].x - 1; x <= tunnelCoords[i].x + 1; x++)
             {
-                for (int y = tunnelCoords[i].y -1; y <= tunnelCoords[i].y + 1; y++)
+                for (int y = tunnelCoords[i].y - 1; y <= tunnelCoords[i].y + 1; y++)
                 {
                     if (SetWallTileIfEmpty(new Vector3Int(x, y)))
                     {
@@ -161,9 +158,9 @@ sealed class ProcGen : MonoBehaviour
                 continue;
             }
 
-            for (int entity = 0; entity < GameManager.instance.Entities.Count; entity++)
+            for (int actor = 0; actor < GameManager.instance.Actors.Count; actor++)
             {
-                Vector3Int pos = MapManager.instance.FloorMap.WorldToCell(GameManager.instance.Entities[entity].transform.position);
+                Vector3Int pos = MapManager.instance.FloorMap.WorldToCell(GameManager.instance.Actors[actor].transform.position);
 
                 if (pos.x == x && pos.y == y)
                 {

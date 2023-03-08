@@ -88,7 +88,7 @@ public class MapManager : MonoBehaviour
         tiles = new Dictionary<Vector3Int, TileData>();
         visibleTiles = new List<Vector3Int>();
 
-        ProcGen procGen = new ProcGen();
+        ProcGen procGen = new();
         procGen.GenerateDungeon(width, height, roomMaxSize, roomMinSize, maxRooms, maxMonstersPerRoom, maxItemsPerRoom, rooms);
 
         AddTileMapToDictionary(floorMap);
@@ -153,6 +153,26 @@ public class MapManager : MonoBehaviour
         }
     }
 
+    // Checking if the position is valid
+    public bool IsValidPosition(Vector3 futurePosition)
+    {
+        // checking the future position from the map manager based on futurePosition
+        Vector3Int gridPosition = floorMap.WorldToCell(futurePosition);
+
+        // Checking if the position that player wants to move is valid
+        // check if it is in bounds
+        // check if it is an obstacle
+        // check if it is current transform position (if player didn't move)
+        // If any of the above is true, do not move character
+        if (!InBounds(gridPosition.x, gridPosition.y) ||
+                obstacleMap.HasTile(gridPosition))
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     private void AddTileMapToDictionary(Tilemap tilemap)
     {
         foreach (Vector3Int pos in tilemap.cellBounds.allPositionsWithin)
@@ -174,8 +194,12 @@ public class MapManager : MonoBehaviour
     {
         foreach (Vector3Int pos in tiles.Keys)
         {
-            fogMap.SetTile(pos, fogTile);
-            fogMap.SetTileFlags(pos, TileFlags.None);
+            if (!fogMap.HasTile(pos))
+            {
+                fogMap.SetTile(pos, fogTile);
+                fogMap.SetTileFlags(pos, TileFlags.None);
+            }
+
 
             if (tiles[pos].IsExplored)
             {
@@ -188,24 +212,6 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    // Checking if the position is valid
-    public bool IsValidPosition(Vector3 futurePosition)
-    {
-        // checking the future position from the map manager based on futurePosition
-        Vector3Int gridPosition = floorMap.WorldToCell(futurePosition);
-
-        // Checking if the position that player wants to move is valid
-        // check if it is in bounds
-        // check if it is an obstacle
-        // check if it is current transform position (if player didn't move)
-        // If any of the above is true, do not move character
-        if (!InBounds(gridPosition.x, gridPosition.y) ||
-                ObstacleMap.HasTile(gridPosition))
-            return false;
-
-        return true;
-    }
-
     public MapState SaveState() => new(tiles, rooms);
 
     public void LoadState(MapState mapState)
@@ -213,9 +219,9 @@ public class MapManager : MonoBehaviour
         rooms = mapState.StoredRooms;
         tiles = mapState.StoredTiles.ToDictionary(x => new Vector3Int((int)x.Key.x, (int)x.Key.y, (int)x.Key.z), x => x.Value);
 
-        if (VisibleTiles.Count > 0)
+        if (visibleTiles.Count > 0)
         {
-            VisibleTiles.Clear();
+            visibleTiles.Clear();
         }
 
         foreach (Vector3Int pos in tiles.Keys)

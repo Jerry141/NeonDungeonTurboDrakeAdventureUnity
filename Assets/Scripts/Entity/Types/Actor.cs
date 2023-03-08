@@ -22,14 +22,14 @@ public class Actor : Entity
 
     private void OnValidate()
     {
-        if (GetComponent<AI>())
-        {
-            aI = GetComponent<AI>();
-        }
-
         if (GetComponent<Inventory>())
         {
             inventory = GetComponent<Inventory>();
+        }
+
+        if (GetComponent<AI>())
+        {
+            aI = GetComponent<AI>();
         }
 
         if (GetComponent<Fighter>())
@@ -39,7 +39,7 @@ public class Actor : Entity
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         AddToGameManager();        
 

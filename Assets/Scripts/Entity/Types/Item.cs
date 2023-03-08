@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Item : Entity
@@ -18,7 +16,7 @@ public class Item : Entity
     }
 
     // Start is called before the first frame update
-    void Start() => AddToGameManager();
+    private void Start() => AddToGameManager();
 
     public override EntityState SaveState() => new ItemState(
         name: name,

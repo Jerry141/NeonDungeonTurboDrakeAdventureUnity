@@ -67,10 +67,10 @@ public class UIManager : MonoBehaviour
     }
 
     // setting up current HP and text to show on the HP bar
-    public void SetHealth(int hp, int maxHP)
+    public void SetHealth(int hp, int maxHp)
     {
         hpSlider.value = hp;
-        hpSliderText.text = $"HP: {hp}/{maxHP}";
+        hpSliderText.text = $"HP: {hp}/{maxHp}";
     }
 
     // toggling Menu
@@ -104,6 +104,7 @@ public class UIManager : MonoBehaviour
     public void ToggleMessageHistory()
     {
         messageHistory.SetActive(!messageHistory.activeSelf);
+        isMenuOpen = messageHistory.activeSelf;
         isMessageHistoryOpen = messageHistory.activeSelf;
     }
 
@@ -133,7 +134,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void ToggleEscapeMenu(Actor actor = null)
+    public void ToggleEscapeMenu()
     {
         escapeMenu.SetActive(!escapeMenu.activeSelf);
         isMenuOpen = escapeMenu.activeSelf;
@@ -173,7 +174,7 @@ public class UIManager : MonoBehaviour
 
             // setting the message by adding the counter if the messages are the same
             messageHistoryLastChild.text = $"{newMessage} (x{++sameMessageCount})";
-            lastFiveHistoryLastChild.text = $"{newMessage} (x{sameMessageCount}";
+            lastFiveHistoryLastChild.text = $"{newMessage} (x{sameMessageCount})";
 
             return;
         }

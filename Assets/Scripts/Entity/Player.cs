@@ -20,7 +20,7 @@ sealed class Player : MonoBehaviour, Controls.IPlayerActions
         controls.Player.Enable();
     }
 
-    private void OnDisble()
+    private void OnDisable()
     {
         controls.Player.SetCallbacks(null);
         controls.Player.Disable();

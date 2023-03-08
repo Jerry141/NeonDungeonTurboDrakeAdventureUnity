@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,8 +26,7 @@ public class Inventory : MonoBehaviour
     {
         items.Remove(item);
         item.transform.SetParent(null);
-        item.GetComponent<SpriteRenderer>().enabled = true;
-        item.AddToGameManager();
+        GameManager.instance.AddEntity(item);
         UIManager.instance.AddMessage($"You dropped the {item.name}.", "#FF0000");
     }
 }
