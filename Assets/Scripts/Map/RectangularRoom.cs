@@ -21,14 +21,18 @@ public class RectangularRoom
         this.height = height;
     }
 
-    public Vector2Int Center() => new Vector2Int(x + width / 2, y + height / 2);
+    // center of the room
+    public Vector2Int Center() => new(x + width / 2, y + height / 2);
+
+    // random inner position inside the room
+    public Vector2Int RandomPoint() => new(Random.Range(x + 1, x + width - 1), Random.Range(y + 1, y + height - 1));
 
     // setting up the bounds of the room
-    public Bounds GetBounds() => new Bounds(new Vector3(x, y, 0),
+    public Bounds GetBounds() => new(new Vector3(x, y, 0),
         new Vector3(width, height, 0));
 
     // setting the area of this room as BoundsInt
-    public BoundsInt GetBoundsInt() => new BoundsInt(new Vector3Int(x, y, 0),
+    public BoundsInt GetBoundsInt() => new(new Vector3Int(x, y, 0),
         new Vector3Int(width, height, 0));
 
 

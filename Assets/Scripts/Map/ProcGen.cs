@@ -14,7 +14,8 @@ sealed class ProcGen
         int maxRooms,
         int maxMonstersPerRoom,
         int maxItemsPerRoom,
-        List<RectangularRoom> rooms)
+        List<RectangularRoom> rooms,
+        bool isNewGame)
     {
         for (int roomNum = 0; roomNum < maxRooms; roomNum++)
         {
@@ -68,8 +69,27 @@ sealed class ProcGen
             rooms.Add(newRoom);
         }
 
-        // first room, with PC
-        MapManager.instance.CreateEntity("Player", rooms[0].Center());
+        // add stairs to the last room
+        MapManager.instance.FloorMap.SetTile((Vector3Int)rooms[rooms.Count - 1].RandomPoint(), MapManager.instance.DownStairsTile);
+
+        // add Player to the first room
+        Vector3Int playerPos = (Vector3Int)rooms[0].RandomPoint();
+
+        while (GameManager.instance.GetActorAtLocation(playerPos) is not null)
+        {
+            playerPos = (Vector3Int)rooms[0].RandomPoint();
+        }
+
+        MapManager.instance.FloorMap.SetTile(playerPos, MapManager.instance.UpStairsTile);
+
+        if (!isNewGame)
+        {
+            GameManager.instance.Actors[0].transform.position = new Vector3(playerPos.x + 0.5f, playerPos.y + 0.5f, 0);
+        }
+        else
+        {
+            MapManager.instance.CreateEntity("Player", (Vector2Int)playerPos);
+        }
     }
 
     // Return an L-shaped tunnel between rooms using Bresenham lines

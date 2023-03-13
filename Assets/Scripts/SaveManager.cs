@@ -42,7 +42,7 @@ public class SaveManager : MonoBehaviour
         return true;
     }
 
-    public void SaveGame()
+    public void SaveGame(bool tempsave = true)
     {
         save.SavedFloor = currentFloor;
 
@@ -56,6 +56,8 @@ public class SaveManager : MonoBehaviour
         {
             AddScene(SaveState());
         }
+
+        if (!tempsave) return;
 
         string path = Path.Combine(Application.persistentDataPath, saveFileName);
         byte[] saveJson = SerializationUtility.SerializeValue(save, DataFormat.JSON);
@@ -76,15 +78,21 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
-            SceneState sceneState = save.Scenes.Find(x => x.FloorNumber == currentFloor);
-            if (sceneState is not null)
-            {
-                LoadState(sceneState);
-            }
-            else
-            {
-                Debug.LogError("No save data for this floor.");
-            }
+            LoadScene();
+        }
+    }
+
+    public void LoadScene(bool canRemovePlayer = true)
+    {
+        SceneState sceneState = save.Scenes.Find(x => x.FloorNumber == currentFloor);
+
+        if (sceneState is not null)
+        {
+            LoadState(sceneState, canRemovePlayer);
+        }
+        else
+        {
+            Debug.Log("No save data for this floor");
         }
     }
 
@@ -104,10 +112,10 @@ public class SaveManager : MonoBehaviour
         MapManager.instance.SaveState()
     );
 
-    public void LoadState(SceneState sceneState)
+    public void LoadState(SceneState sceneState, bool canRemovePlayer)
     {
         MapManager.instance.LoadState(sceneState.MapState);
-        GameManager.instance.LoadState(sceneState.GameState);
+        GameManager.instance.LoadState(sceneState.GameState, canRemovePlayer);
     }
 }
 
