@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private EventSystem eventSystem;
     [SerializeField] private bool isMenuOpen = false;
+    [SerializeField] private TextMeshProUGUI dungeonFloorText;
 
     [Header("Health UI")]
     [SerializeField] private Slider hpSlider;
@@ -38,11 +39,21 @@ public class UIManager : MonoBehaviour
     [SerializeField] private bool isEscapeMenuOpen = false; // read only
     [SerializeField] private GameObject escapeMenu;
 
+    [Header("Character Information Menu UI")]
+    [SerializeField] private bool isCharInfoMenuOpen = false; // read only
+    [SerializeField] private GameObject charInfoMenu;
+
+    [Header("Level Up Menu UI")]
+    [SerializeField] private bool isLevelUpMenuOpen = false; // read only
+    [SerializeField] private GameObject levelUpMenu;
+    [SerializeField] private GameObject levelUpMenuContent;
+
     public bool IsMenuOpen { get => isMenuOpen; }
     public bool IsMessageHistoryOpen { get => isMessageHistoryOpen; }
     public bool IsInventoryOpen { get => isInventoryOpen; }
     public bool IsDropMenuOpen { get => isDropMenuOpen; }
     public bool IsEscapeMenuOpen { get => isEscapeMenuOpen; }
+    public bool IsCharInfoMenuOpen { get => isCharInfoMenuOpen; }
 
     private void Awake()
     {
@@ -57,7 +68,19 @@ public class UIManager : MonoBehaviour
     }
 
     // First message to the player
-    private void Start() => AddMessage("Turbo Drake rise once again to reclaim his powers!", "#f222ff");
+    private void Start()
+    {
+        SetDungeonFloorText(SaveManager.instance.CurrentFloor);
+
+        if (SaveManager.instance.Save.SavedFloor is 0)
+        {
+            AddMessage("Turbo Drake rise once again to reclaim his powers!", "#f222ff");
+        }
+        else
+        {
+            AddMessage("Welcome back Drake!", "#F222FF");
+        }
+    }
 
 
     // setting up the Player's max hp
@@ -71,6 +94,11 @@ public class UIManager : MonoBehaviour
     {
         hpSlider.value = hp;
         hpSliderText.text = $"HP: {hp}/{maxHp}";
+    }
+
+    public void SetDungeonFloorText(int floor)
+    {
+        dungeonFloorText.text = $"Dungeon floor: {floor}";
     }
 
     // toggling Menu
@@ -94,6 +122,9 @@ public class UIManager : MonoBehaviour
                 case bool _ when isEscapeMenuOpen:
                     ToggleEscapeMenu();
                     break;
+                case bool _ when isCharInfoMenuOpen:
+                    ToggleCharacterInformationMenu();
+                    break;
                 default:
                     break;
             }
@@ -103,17 +134,15 @@ public class UIManager : MonoBehaviour
     // message history menu
     public void ToggleMessageHistory()
     {
-        messageHistory.SetActive(!messageHistory.activeSelf);
-        isMenuOpen = messageHistory.activeSelf;
-        isMessageHistoryOpen = messageHistory.activeSelf;
+        isMessageHistoryOpen = !isMessageHistoryOpen;
+        SetBooleans(messageHistory, isMessageHistoryOpen);
     }
 
     // inventory
     public void ToggleInventory(Actor actor = null)
     {
-        inventory.SetActive(!inventory.activeSelf);
-        isMenuOpen = inventory.activeSelf;
-        isInventoryOpen = inventory.activeSelf;
+        isInventoryOpen = !isInventoryOpen;
+        SetBooleans(inventory, isInventoryOpen);
 
         // if menu is open - update the content - same for drop menu
         if (isMenuOpen)
@@ -124,9 +153,8 @@ public class UIManager : MonoBehaviour
 
     public void ToggleDropMenu(Actor actor = null)
     {
-        dropMenu.SetActive(!dropMenu.activeSelf);
-        isMenuOpen = dropMenu.activeSelf;
-        isDropMenuOpen = dropMenu.activeSelf;
+        isDropMenuOpen = !isDropMenuOpen;
+        SetBooleans(dropMenu, isDropMenuOpen);
 
         if (isMenuOpen)
         {
@@ -136,24 +164,85 @@ public class UIManager : MonoBehaviour
 
     public void ToggleEscapeMenu()
     {
-        escapeMenu.SetActive(!escapeMenu.activeSelf);
-        isMenuOpen = escapeMenu.activeSelf;
-        isEscapeMenuOpen = escapeMenu.activeSelf;
+        isEscapeMenuOpen = !isEscapeMenuOpen;
+        SetBooleans(escapeMenu, isEscapeMenuOpen);
 
-        if (isMenuOpen)
+        eventSystem.SetSelectedGameObject(escapeMenu.transform.GetChild(0).gameObject);
+
+    }
+
+    public void ToggleLevelUpMenu(Actor actor)
+    {
+        isLevelUpMenuOpen = !isLevelUpMenuOpen;
+        SetBooleans(levelUpMenu, isLevelUpMenuOpen);
+
+        GameObject healthButton = levelUpMenuContent.transform.GetChild(0).gameObject;
+        GameObject powerButton = levelUpMenuContent.transform.GetChild(1).gameObject;
+        GameObject defenseButton = levelUpMenuContent.transform.GetChild(2).gameObject;
+
+        healthButton.GetComponent<TextMeshProUGUI>().text = $"a) Vitality (+20 HP, from {actor.GetComponent<Fighter>().MaxHp})";
+        powerButton.GetComponent<TextMeshProUGUI>().text = $"b) Power (+1 attack, from {actor.GetComponent<Fighter>().Power})";
+        defenseButton.GetComponent<TextMeshProUGUI>().text = $"c) Toughness (+1 defense, from {actor.GetComponent<Fighter>().Defense})";
+
+        foreach (Transform child in levelUpMenuContent.transform)
         {
-            eventSystem.SetSelectedGameObject(escapeMenu.transform.GetChild(0).gameObject);
+            child.GetComponent<Button>().onClick.RemoveAllListeners();
+
+            child.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                if (healthButton == child.gameObject)
+                {
+                    actor.GetComponent<Level>().IncreaseMaxHp();
+                }
+                else if (powerButton == child.gameObject)
+                {
+                    actor.GetComponent<Level>().IncreasePower();
+                }
+                else if (defenseButton == child.gameObject)
+                {
+                    actor.GetComponent<Level>().IncreaseDefense();
+                }
+                else
+                {
+                    Debug.Log("No button found");
+                }
+            });
         }
+
+        eventSystem.SetSelectedGameObject(levelUpMenuContent.transform.GetChild(0).gameObject);
+    }
+
+    public void ToggleCharacterInformationMenu(Actor actor = null)
+    {
+        charInfoMenu.SetActive(!charInfoMenu.activeSelf);
+        SetBooleans(charInfoMenu, isCharInfoMenuOpen);
+
+        if (actor is not null)
+        {
+            charInfoMenu.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"Level: {actor.GetComponent<Level>().CurrentLevel}";
+            charInfoMenu.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"XP: {actor.GetComponent<Level>().CurrentXp}";
+            charInfoMenu.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = $"XP to next level: {actor.GetComponent<Level>().XpToNextLevel}";
+            charInfoMenu.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = $"Attack: {actor.GetComponent<Fighter>().Power}";
+            charInfoMenu.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = $"Defense: {actor.GetComponent<Fighter>().Defense}";
+        }
+    }
+
+    private void SetBooleans(GameObject menu, bool menuBool)
+    {
+        isMenuOpen = menuBool;
+        menu.SetActive(menuBool);
     }
 
     public void Save()
     {
-        SaveManager.instance.SaveGame();
+        SaveManager.instance.SaveGame(false);
+        AddMessage("You have saved your progress... delaying the inevitable.", "#0DA2FF");
     }
 
     public void Load()
     {
         SaveManager.instance.LoadGame();
+        AddMessage("Looks like time travel is possible... but will that be enough?", "#0DA2FF");
         ToggleMenu();
     }
 

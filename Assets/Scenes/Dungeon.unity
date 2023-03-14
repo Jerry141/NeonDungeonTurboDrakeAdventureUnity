@@ -658,6 +658,8 @@ MonoBehaviour:
   floorTile: {fileID: 11400000, guid: 7c74303a8c1df4c4a9320670e9a24f4c, type: 2}
   wallTile: {fileID: 11400000, guid: 8e63da5d6fee24262bc0fd75ee260167, type: 2}
   fogTile: {fileID: 11400000, guid: 0a9cf103501b94610a8a7f48989c0018, type: 2}
+  upStairsTile: {fileID: 11400000, guid: 9d96bb6584f97461f9a484ea52ef6e0f, type: 2}
+  downStairsTile: {fileID: 11400000, guid: b392e8def8a434cb0851e28ba8128957, type: 2}
   floorMap: {fileID: 647237895}
   obstacleMap: {fileID: 789057590}
   fogMap: {fileID: 785493163}
@@ -935,6 +937,10 @@ PrefabInstance:
     - target: {fileID: 4943121147833057044, guid: d7d6d5b5305e54d63bfa2469c633365f, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6220636567353606189, guid: d7d6d5b5305e54d63bfa2469c633365f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -109.44824
       objectReference: {fileID: 0}
     - target: {fileID: 7155107225062193838, guid: d7d6d5b5305e54d63bfa2469c633365f, type: 3}
       propertyPath: m_AnchorMax.y

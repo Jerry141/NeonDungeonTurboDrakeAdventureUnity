@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 static public class Action
 {
@@ -81,6 +82,40 @@ static public class Action
             UIManager.instance.AddMessage($"You have gathered the {item.name}!", "FFFFFF");
             GameManager.instance.EndTurn();
         }
+    }
+
+    static public void TakeStairsAction(Actor actor)
+    {
+        Vector3Int pos = MapManager.instance.FloorMap.WorldToCell(actor.transform.position);
+        string tileName = MapManager.instance.FloorMap.GetTile(pos).name;
+
+        if (tileName != MapManager.instance.UpStairsTile.name && tileName != MapManager.instance.DownStairsTile.name)
+        {
+            UIManager.instance.AddMessage("There are no stairs here.", "#0DA2FF");
+            return;
+        }
+
+        if (SaveManager.instance.CurrentFloor == 1 && tileName == MapManager.instance.UpStairsTile.name)
+        {
+            UIManager.instance.AddMessage("Your destiny lies deeper in the dungeon, there is no going back now!", "#0DA2FF");
+            return;
+        }
+
+        SaveManager.instance.SaveGame();
+        SaveManager.instance.CurrentFloor += tileName == MapManager.instance.UpStairsTile.name ? -1 : 1;
+
+        if (SaveManager.instance.Save.Scenes.Exists(x => x.FloorNumber == SaveManager.instance.CurrentFloor))
+        {
+            SaveManager.instance.LoadScene(false);
+        }
+        else
+        {
+            GameManager.instance.Reset(false);
+            MapManager.instance.GenerateDungeon();
+        }
+
+        UIManager.instance.AddMessage("You can feel that your goal is getting closer as you take the stairs!", "#0DA2FF");
+        UIManager.instance.SetDungeonFloorText(SaveManager.instance.CurrentFloor);
     }
 
     static public void DropAction(Actor actor, Item item)
