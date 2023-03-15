@@ -8,9 +8,9 @@ public class Level : MonoBehaviour
     public int CurrentLevel { get => currentLevel; }
     public int CurrentXp { get => currentXp; }
     public int XpToNextLevel { get => xpToNextLevel; }
-    public int XpGiven { get => xpGiven; }
+    public int XpGiven { get => xpGiven; set => xpGiven = value; }
 
-    public void OnValidate() => xpToNextLevel = ExperienceToNextLevel();
+    private void OnValidate() => xpToNextLevel = ExperienceToNextLevel();
 
     private int ExperienceToNextLevel() => levelUpBase + currentLevel * levelUpFactor;
     private bool RequiresLevelUp() => currentXp >= xpToNextLevel;
@@ -26,7 +26,7 @@ public class Level : MonoBehaviour
         if (RequiresLevelUp())
         {
             UIManager.instance.ToggleLevelUpMenu(GetComponent<Actor>());
-            UIManager.instance.AddMessage($"You grow stronger and reach the {currentLevel + 1} level!", "#00FF00");
+            UIManager.instance.AddMessage($"You grow stronger as you reach the level {currentLevel + 1}!", "#00FF00");
         }
     }
 
@@ -42,7 +42,7 @@ public class Level : MonoBehaviour
         GetComponent<Actor>().Fighter.MaxHp += amount;
         GetComponent<Actor>().Fighter.Hp += amount;
 
-        UIManager.instance.AddMessage("Your vitals improves!", "#00FF00");
+        UIManager.instance.AddMessage($"Your vitals improves!", "#00FF00");
         IncreaseLevel();
     }
 
@@ -50,7 +50,7 @@ public class Level : MonoBehaviour
     {
         GetComponent<Actor>().Fighter.Power += amount;
 
-        UIManager.instance.AddMessage("You feel stronger!", "#00FF00");
+        UIManager.instance.AddMessage($"You feel stronger!", "#00FF00");
         IncreaseLevel();
     }
 
@@ -58,7 +58,7 @@ public class Level : MonoBehaviour
     {
         GetComponent<Actor>().Fighter.Defense += amount;
 
-        UIManager.instance.AddMessage("Your defenses improves!", "#00FF00");
+        UIManager.instance.AddMessage($"Your defenses improves!", "#00FF00");
         IncreaseLevel();
     }
 
@@ -79,9 +79,9 @@ public class LevelState
 {
     [SerializeField] private int currentLevel = 1, currentXp, xpToNextLevel;
 
-    public int CurrentLevel { get => currentLevel; }
-    public int CurrentXp { get => currentXp; }
-    public int XpToNextLevel { get => xpToNextLevel; }
+    public int CurrentLevel { get => currentLevel; set => currentLevel = value; }
+    public int CurrentXp { get => currentXp; set => currentXp = value; }
+    public int XpToNextLevel { get => xpToNextLevel; set => xpToNextLevel = value; }
 
     public LevelState(int currentLevel, int currentXp, int xpToNextLevel)
     {

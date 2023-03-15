@@ -98,7 +98,7 @@ public class Actor : Entity
         position: transform.position,
         currentAI: aI != null ? AI.SaveState() : null,
         fighterState: fighter != null ? fighter.SaveState() : null,
-        levelState: level != null && GetComponent<Player>() ? level.SaveState(): null);
+        levelState: level != null && GetComponent<Player>() ? level.SaveState() : null);
 
     public void LoadState(ActorState state)
     {

@@ -42,7 +42,7 @@ public class SaveManager : MonoBehaviour
         return true;
     }
 
-    public void SaveGame(bool tempsave = true)
+    public void SaveGame(bool tempSave = true)
     {
         save.SavedFloor = currentFloor;
 
@@ -57,11 +57,12 @@ public class SaveManager : MonoBehaviour
             AddScene(SaveState());
         }
 
-        if (!tempsave) return;
-
-        string path = Path.Combine(Application.persistentDataPath, saveFileName);
-        byte[] saveJson = SerializationUtility.SerializeValue(save, DataFormat.JSON);
-        File.WriteAllBytes(path, saveJson);
+        if (!tempSave)
+        {
+            string path = Path.Combine(Application.persistentDataPath, saveFileName);
+            byte[] saveJson = SerializationUtility.SerializeValue(save, DataFormat.JSON);
+            File.WriteAllBytes(path, saveJson);
+        }
     }
 
     public void LoadGame()
@@ -82,6 +83,16 @@ public class SaveManager : MonoBehaviour
         }
     }
 
+    public void DeleteSave()
+    {
+        string path = Path.Combine(Application.persistentDataPath, saveFileName);
+        File.Delete(path);
+    }
+
+    public void AddScene(SceneState sceneState) => save.Scenes.Add(sceneState);
+
+    public void UpdateScene(SceneState sceneState) => save.Scenes[currentFloor - 1] = sceneState;
+
     public void LoadScene(bool canRemovePlayer = true)
     {
         SceneState sceneState = save.Scenes.Find(x => x.FloorNumber == currentFloor);
@@ -92,19 +103,9 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("No save data for this floor");
+            Debug.LogError("No save data for this floor");
         }
     }
-
-    public void DeleteSave()
-    {
-        string path = Path.Combine(Application.persistentDataPath, saveFileName);
-        File.Delete(path);
-    }
-
-    public void AddScene(SceneState sceneState) => save.Scenes.Add(sceneState);
-
-    public void UpdateScene(SceneState sceneState) => save.Scenes[currentFloor - 1] = sceneState;
 
     public SceneState SaveState() => new(
         currentFloor,

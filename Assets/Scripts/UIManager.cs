@@ -204,8 +204,9 @@ public class UIManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("No button found");
+                    Debug.LogError("No button found");
                 }
+                ToggleLevelUpMenu(actor);
             });
         }
 
@@ -214,7 +215,7 @@ public class UIManager : MonoBehaviour
 
     public void ToggleCharacterInformationMenu(Actor actor = null)
     {
-        charInfoMenu.SetActive(!charInfoMenu.activeSelf);
+        isCharInfoMenuOpen = !isCharInfoMenuOpen;
         SetBooleans(charInfoMenu, isCharInfoMenuOpen);
 
         if (actor is not null)

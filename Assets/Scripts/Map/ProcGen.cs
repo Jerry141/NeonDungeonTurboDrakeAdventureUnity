@@ -120,11 +120,6 @@ sealed class ProcGen
         {
             SetFloorTile(new Vector3Int(tunnelCoords[i].x, tunnelCoords[i].y));
 
-            // set the floor
-            //MapManager.instance.FloorMap.SetTile(new Vector3Int(tunnelCoords[i].x,
-            //    tunnelCoords[i].y, 0), MapManager.instance.FloorTile);
-
-            // set the walls
             for (int x = tunnelCoords[i].x - 1; x <= tunnelCoords[i].x + 1; x++)
             {
                 for (int y = tunnelCoords[i].y - 1; y <= tunnelCoords[i].y + 1; y++)

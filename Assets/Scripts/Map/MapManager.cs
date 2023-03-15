@@ -79,7 +79,7 @@ public class MapManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         // Setting up camera to view the game better
         Camera.main.transform.position = new Vector3(40, 20.25f, -10);
