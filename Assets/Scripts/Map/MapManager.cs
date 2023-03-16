@@ -14,8 +14,6 @@ public class MapManager : MonoBehaviour
     [SerializeField] private int roomMaxSize = 10;
     [SerializeField] private int roomMinSize = 6;
     [SerializeField] private int maxRooms = 30;
-    [SerializeField] private int maxMonstersPerRoom = 2;
-    [SerializeField] private int maxItemsPerRoom = 2;
 
 
     [Header("Tiles")]
@@ -100,7 +98,7 @@ public class MapManager : MonoBehaviour
         }
 
         ProcGen procGen = new();
-        procGen.GenerateDungeon(width, height, roomMaxSize, roomMinSize, maxRooms, maxMonstersPerRoom, maxItemsPerRoom, rooms, isNewGame);
+        procGen.GenerateDungeon(width, height, roomMaxSize, roomMinSize, maxRooms, rooms, isNewGame);
 
         AddTileMapToDictionary(floorMap);
         AddTileMapToDictionary(obstacleMap);
@@ -189,18 +187,6 @@ public class MapManager : MonoBehaviour
         return true;
     }
 
-    private void Reset()
-    {
-        rooms.Clear();
-        tiles.Clear();
-        visibleTiles.Clear();
-        nodes.Clear();
-
-        floorMap.ClearAllTiles();
-        obstacleMap.ClearAllTiles();
-        fogMap.ClearAllTiles();
-    }
-
     private void AddTileMapToDictionary(Tilemap tilemap)
     {
         foreach (Vector3Int pos in tilemap.cellBounds.allPositionsWithin)
@@ -238,6 +224,18 @@ public class MapManager : MonoBehaviour
                 fogMap.SetColor(pos, Color.white);
             }
         }
+    }
+
+    private void Reset()
+    {
+        rooms.Clear();
+        tiles.Clear();
+        visibleTiles.Clear();
+        nodes.Clear();
+
+        floorMap.ClearAllTiles();
+        obstacleMap.ClearAllTiles();
+        fogMap.ClearAllTiles();
     }
 
     public MapState SaveState() => new(tiles, rooms);
