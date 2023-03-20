@@ -181,8 +181,8 @@ public class UIManager : MonoBehaviour
         GameObject defenseButton = levelUpMenuContent.transform.GetChild(2).gameObject;
 
         healthButton.GetComponent<TextMeshProUGUI>().text = $"a) Vitality (+20 HP, from {actor.GetComponent<Fighter>().MaxHp})";
-        powerButton.GetComponent<TextMeshProUGUI>().text = $"b) Power (+1 attack, from {actor.GetComponent<Fighter>().Power})";
-        defenseButton.GetComponent<TextMeshProUGUI>().text = $"c) Toughness (+1 defense, from {actor.GetComponent<Fighter>().Defense})";
+        powerButton.GetComponent<TextMeshProUGUI>().text = $"b) Power (+1 attack, from {actor.GetComponent<Fighter>().Power()})";
+        defenseButton.GetComponent<TextMeshProUGUI>().text = $"c) Toughness (+1 defense, from {actor.GetComponent<Fighter>().Defense()})";
 
         foreach (Transform child in levelUpMenuContent.transform)
         {
@@ -223,8 +223,8 @@ public class UIManager : MonoBehaviour
             charInfoMenu.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"Level: {actor.GetComponent<Level>().CurrentLevel}";
             charInfoMenu.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"XP: {actor.GetComponent<Level>().CurrentXp}";
             charInfoMenu.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = $"XP to next level: {actor.GetComponent<Level>().XpToNextLevel}";
-            charInfoMenu.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = $"Attack: {actor.GetComponent<Fighter>().Power}";
-            charInfoMenu.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = $"Defense: {actor.GetComponent<Fighter>().Defense}";
+            charInfoMenu.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = $"Attack: {actor.GetComponent<Fighter>().Power()}";
+            charInfoMenu.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = $"Defense: {actor.GetComponent<Fighter>().Defense()}";
         }
     }
 
@@ -332,7 +332,14 @@ public class UIManager : MonoBehaviour
             {
                 if (menuContent == inventoryContent)
                 {
-                    Action.UseAction(actor, item);
+                    if (item.Consumable is not null)
+                    {
+                        Action.UseAction(actor, item);
+                    }
+                    else if (item.Equippable is not null)
+                    {
+                        Action.EquipAction(actor, item);
+                    }
                 }
                 else if (menuContent == dropMenuContent)
                 {

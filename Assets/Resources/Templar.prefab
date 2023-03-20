@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 124865559205381508}
   - component: {fileID: -966106038878778163}
   - component: {fileID: 957032792286734915}
+  - component: {fileID: 7594851144858690939}
   m_Layer: 0
   m_Name: Templar
   m_TagString: Untagged
@@ -107,6 +108,7 @@ MonoBehaviour:
   fieldOfView: []
   aI: {fileID: -966106038878778163}
   inventory: {fileID: 0}
+  equipment: {fileID: 7594851144858690939}
   fighter: {fileID: 8396410879738091166}
   level: {fileID: 957032792286734915}
 --- !u!114 &8396410879738091166
@@ -123,8 +125,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 18
   hp: 18
-  defense: 2
-  power: 4
+  baseDefense: 1
+  basePower: 4
   target: {fileID: 0}
 --- !u!114 &124865559205381508
 MonoBehaviour:
@@ -171,3 +173,17 @@ MonoBehaviour:
   levelUpBase: 200
   levelUpFactor: 150
   xpGiven: 100
+--- !u!114 &7594851144858690939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2972196206211894112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbd842847e08342c689e8477f899ddce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 0}
+  armor: {fileID: 0}

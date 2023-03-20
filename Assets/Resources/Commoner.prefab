@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -5423251444577732699}
   - component: {fileID: 1652383238631279779}
   - component: {fileID: 7109347104489260190}
+  - component: {fileID: -2976361128499947630}
   m_Layer: 0
   m_Name: Commoner
   m_TagString: Untagged
@@ -107,6 +108,7 @@ MonoBehaviour:
   fieldOfView: []
   aI: {fileID: 1652383238631279779}
   inventory: {fileID: 0}
+  equipment: {fileID: -2976361128499947630}
   fighter: {fileID: 5585991547512711589}
   level: {fileID: 7109347104489260190}
 --- !u!114 &5585991547512711589
@@ -123,8 +125,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 10
   hp: 10
-  defense: 0
-  power: 3
+  baseDefense: 0
+  basePower: 3
   target: {fileID: 0}
 --- !u!114 &-5423251444577732699
 MonoBehaviour:
@@ -171,3 +173,17 @@ MonoBehaviour:
   levelUpBase: 200
   levelUpFactor: 150
   xpGiven: 30
+--- !u!114 &-2976361128499947630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2972196206211894112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbd842847e08342c689e8477f899ddce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 0}
+  armor: {fileID: 0}
