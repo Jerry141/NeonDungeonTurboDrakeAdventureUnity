@@ -14,20 +14,20 @@ static public class Action
         Vector3Int pos = MapManager.instance.FloorMap.WorldToCell(actor.transform.position);
         string tileName = MapManager.instance.FloorMap.GetTile(pos).name;
 
-        if (tileName != MapManager.instance.UpStairsTile.name && tileName != MapManager.instance.DownStairsTile.name)
+        if (tileName != MapManager.instance.DownStairsTile.name)
         {
             UIManager.instance.AddMessage("There are no stairs here.", "#0DA2FF");
             return;
         }
 
-        if (SaveManager.instance.CurrentFloor == 1 && tileName == MapManager.instance.UpStairsTile.name)
+        if (SaveManager.instance.CurrentFloor == 1 && tileName != MapManager.instance.DownStairsTile.name)
         {
             UIManager.instance.AddMessage("Your destiny lies deeper in the dungeon, there is no going back now!", "#0DA2FF");
             return;
         }
 
         SaveManager.instance.SaveGame();
-        SaveManager.instance.CurrentFloor += tileName == MapManager.instance.UpStairsTile.name ? -1 : 1;
+        SaveManager.instance.CurrentFloor += 1;
 
         if (SaveManager.instance.Save.Scenes.Exists(x => x.FloorNumber == SaveManager.instance.CurrentFloor))
         {

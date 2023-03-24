@@ -149,8 +149,6 @@ sealed class ProcGen : MonoBehaviour
             playerPos = (Vector3Int)rooms[0].RandomPoint();
         }
 
-        MapManager.instance.FloorMap.SetTile(playerPos, MapManager.instance.UpStairsTile);
-
         if (!isNewGame)
         {
             GameManager.instance.Actors[0].transform.position = new Vector3(playerPos.x + 0.5f, playerPos.y + 0.5f, 0);
