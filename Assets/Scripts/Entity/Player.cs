@@ -274,7 +274,7 @@ sealed class Player : MonoBehaviour, Controls.IPlayerActions
 
         if (target == GetComponent<Actor>())
         {
-            UIManager.instance.AddMessage("Drake is too smart to target himself... not like you, dumbass!", "#FFFFFF");
+            UIManager.instance.AddMessage("Player is too smart to target himself... not like you, dumbass!", "#FFFFFF");
             return null;
         }
 

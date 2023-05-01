@@ -2,7 +2,15 @@ sealed class EnforcedJacket : Equippable
 {
     public EnforcedJacket()
     {
-        EquipmentType = EquipmentType.Weapon;
+        EquipmentType = EquipmentType.Armor;
         DefenseBonus = 3;
+    }
+
+    private void OnValidate()
+    {
+        if (gameObject.transform.parent)
+        {
+            gameObject.transform.parent.GetComponent<Equipment>().Armor = this;
+        }
     }
 }

@@ -10,7 +10,7 @@ public class NeonSabre : Equippable
     {
         if (gameObject.transform.parent)
         {
-            gameObject.transform.parent.GetComponent<Equipment>().Armor = this;
+            gameObject.transform.parent.GetComponent<Equipment>().Weapon = this;
         }
     }
 }

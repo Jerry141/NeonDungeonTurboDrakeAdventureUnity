@@ -125,7 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 18
   hp: 18
-  baseDefense: 1
+  baseDefense: 2
   basePower: 4
   target: {fileID: 0}
 --- !u!114 &124865559205381508

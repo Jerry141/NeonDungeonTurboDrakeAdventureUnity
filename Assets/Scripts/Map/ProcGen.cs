@@ -22,7 +22,8 @@ sealed class ProcGen : MonoBehaviour
         new Tuple<int, int>(1, 2),
         new Tuple<int, int>(4, 3),
         new Tuple<int, int>(7, 5),
-        new Tuple<int, int>(10, 10),
+        new Tuple<int, int>(9, 7),
+        new Tuple<int, int>(15, 10),
     };
 
     private List<Tuple<int, string, int>> itemChances = new List<Tuple<int, string, int>>
@@ -31,14 +32,19 @@ sealed class ProcGen : MonoBehaviour
         new Tuple<int, string, int>(2, "Confusion Chip", 10),
         new Tuple<int, string, int>(4, "Neon Bolt Chip", 25), new Tuple<int, string, int>(4, "Neon Sabre", 5),
         new Tuple<int, string, int>(6, "Neon Ball Chip", 25), new Tuple<int, string, int>(6, "Enforced Jacket", 15),
+        new Tuple<int, string, int>(7, "Pickaxe", 30),
+        new Tuple<int, string, int>(8, "Life Steal Chip", 60),
+        new Tuple<int, string, int>(9, "Vampire Robe", 50), new Tuple<int, string, int>(9, "Neon Blood Vial", 50)
     };
 
     private List<Tuple<int, string, int>> monsterChances = new List<Tuple<int, string, int>>
     {
         new Tuple<int, string, int>(1, "Commoner", 80),
+        new Tuple<int, string, int>(1, "Neon Addict", 5),
         new Tuple<int, string, int>(3, "Templar", 15),
         new Tuple<int, string, int>(5, "Templar", 30),
-        new Tuple<int, string, int>(7, "Templar", 60),
+        new Tuple<int, string, int>(7, "Miner", 60), new Tuple<int, string, int>(7, "Supervisor", 20),
+        new Tuple<int, string, int>(9, "Vampire Hunter", 100),
     };
 
     public int GetMaxValueForFloor(List<Tuple<int, int>> values, int floor)

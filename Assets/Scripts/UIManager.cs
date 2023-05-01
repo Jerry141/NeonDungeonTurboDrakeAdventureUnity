@@ -74,11 +74,11 @@ public class UIManager : MonoBehaviour
 
         if (SaveManager.instance.Save.SavedFloor is 0)
         {
-            AddMessage("Turbo Drake rise once again to reclaim his powers!", "#f222ff");
+            AddMessage("Turbo Player rise once again to reclaim his powers!", "#f222ff");
         }
         else
         {
-            AddMessage("Welcome back Drake!", "#F222FF");
+            AddMessage("Welcome back Player!", "#F222FF");
         }
     }
 

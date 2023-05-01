@@ -172,7 +172,7 @@ MonoBehaviour:
   xpToNextLevel: 350
   levelUpBase: 200
   levelUpFactor: 150
-  xpGiven: 30
+  xpGiven: 35
 --- !u!114 &-2976361128499947630
 MonoBehaviour:
   m_ObjectHideFlags: 0

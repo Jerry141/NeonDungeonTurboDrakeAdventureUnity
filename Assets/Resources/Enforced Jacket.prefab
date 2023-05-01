@@ -113,6 +113,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e83aca1587054d819647aee7ab4f8d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipmentType: 0
+  equipmentType: 1
   powerBonus: 0
   defenseBonus: 3

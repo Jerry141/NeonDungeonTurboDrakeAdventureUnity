@@ -9,17 +9,17 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button continueButton;
 
 
-    private void Start()
-    {
-        if (!SaveManager.instance.HasSaveAvailable())
-        {
-            continueButton.interactable = false;
-        }
-        else
-        {
-            eventSystem.SetSelectedGameObject(continueButton.gameObject);
-        }
-    }
+    //private void Start()
+    //{
+    //    if (!SaveManager.instance.HasSaveAvailable())
+    //    {
+    //        continueButton.interactable = false;
+    //    }
+    //    else
+    //    {
+    //        eventSystem.SetSelectedGameObject(continueButton.gameObject);
+    //    }
+    //}
 
     public void NewGame()
     {
