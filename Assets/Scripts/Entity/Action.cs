@@ -41,6 +41,22 @@ static public class Action
 
         UIManager.instance.AddMessage("You can feel that your goal is getting closer as you take the stairs!", "#0DA2FF");
         UIManager.instance.SetDungeonFloorText(SaveManager.instance.CurrentFloor);
+
+        if (SaveManager.instance.CurrentFloor is 3)
+        {
+            UIManager.instance.AddMessage("The Neon Dungeon's [T]emplars guard the source of neon and protect the refugees in their outpost.", "#153CB4");
+            UIManager.instance.AddMessage("However, their methods are often brutal and oppressive, leading many to question their true motives.", "#153CB4");
+        }
+        else if (SaveManager.instance.CurrentFloor is 7)
+        {
+            UIManager.instance.AddMessage("In the Neon Mines, Drake must face the tireless miners and supervisors driven by neon's power.", "#FFAD00");
+            UIManager.instance.AddMessage("Their bodies and minds twisted by the power of neon, driving them to attack outsiders who dare to spoil their focus.", "#3FD600");
+        }
+        else if (SaveManager.instance.CurrentFloor is 9)
+        {
+            UIManager.instance.AddMessage("In the Neon Dungeon Sanctum, Vampire Hunters prowl the shadows, leaving familiar looking corpses in their wake.", "#FD1900");
+            UIManager.instance.AddMessage("Drake must use all of his powers to survive their deadly pursuit.", "#FD1900");
+        }
     }
 
     static public bool BumpAction(Actor actor, Vector2 direction)
