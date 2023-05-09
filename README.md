@@ -148,7 +148,7 @@ Room for improvement:
 ## Acknowledgements
 - This project was inspired by Rogue: Exploring the Dungeons of Doom
 - This project was initially based on [this tutorial](https://rogueliketutorials.com/tutorials/tcod/v2/).
-- Porting from Python to Unity was done with help of [The Sleepy Koala](https://www.youtube.com/@thesleepykoala).
+- Porting from Python to Unity was done with help of [The Sleepy Koala](https://www.youtube.com/@thesleepykoala) and his amazing youtube series.
 - Main Menu background - found in google, unfortunately I forgot to write down the author, so if you find it somehow please let me know so I can properly mentioned them. For now it is only a placeholder but I really like it so it would be nice to keep it as is.
 
 
