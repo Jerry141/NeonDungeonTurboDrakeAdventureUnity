@@ -16,6 +16,10 @@
 - You play as the Turbo Drake - manifestation of Vlad Drakula Tepesh in the Synthwave inspired world where Neons are the source of power.
 - The lower you go through the dungeon the more dangerous it gets, be ready to get more powerful as well by feeding upon the enemies residing this wretched place.
 - The game is in very early stages of development, but content is planned to be added as frequent as possible, as this is my side project and I have no time or resources to commit to this 100% unfortunately.
+- The whole purpose of this project is to learn C#, Unity and overall game development. It is just more fun to do with some story.
+- Everything is a subject to change, I will treat this one as my sandbox and will mess around from time to time.
+
+The game is possible to test here: [Unity Play](https://play.unity.com/mg/other/ndtda_build1)
 
 
 ## Content
@@ -48,7 +52,23 @@
 <img width="1578" alt="start" src="https://github.com/Jerry141/NeonDungeonTurboDrakeAdventureUnity/assets/38975789/419450dd-91dd-4fca-80d6-97c9a5d55d6e">
 Start of the game
 
+<img width="289" alt="image" src="https://github.com/Jerry141/NeonDungeonTurboDrakeAdventureUnity/assets/38975789/7fe2f58a-660d-45a1-89e3-86bb66fb03da">
+[!] - Blood Vial, [%] - Enemy's Corpse
 
+<img width="1574" alt="image" src="https://github.com/Jerry141/NeonDungeonTurboDrakeAdventureUnity/assets/38975789/4f30bfd1-9306-4079-b22d-eb6031da6555">
+Level Up menu
+
+<img width="335" alt="image" src="https://github.com/Jerry141/NeonDungeonTurboDrakeAdventureUnity/assets/38975789/f1b0724e-d47e-438f-9b95-166214bf889d">
+Stairs down to lower level
+
+<img width="497" alt="image" src="https://github.com/Jerry141/NeonDungeonTurboDrakeAdventureUnity/assets/38975789/c0844646-4988-4572-bbff-1ffbcc44963a">
+Inventory
+
+<img width="1574" alt="image" src="https://github.com/Jerry141/NeonDungeonTurboDrakeAdventureUnity/assets/38975789/563369d0-f012-4e58-9d00-d2281f426ce3">
+Character information
+
+<img width="1533" alt="image" src="https://github.com/Jerry141/NeonDungeonTurboDrakeAdventureUnity/assets/38975789/9d1dc424-560e-4780-9a30-0285d4bb3412">
+Message history
 
 ## Manual
 
@@ -71,10 +91,10 @@ Inventory:
 - Pick Up Item - [g]
 
 - Go to the next level - [Enter] - first you need to stand on [>]
-- Look Up (provides the ability to check the enviorment using the keyboard) - [/]
 - Open message log - [v]
 
-- Close game - [ESC]
+[C] - Character information
+[Esc] - Escape menu (not fully functional yet)
 
 ### Combat:
 The Combat in NDTDA is turn based. Once player moves/pick up items/uses item it counts as a turn. After that every enemy on the map (if visible) takes their turn to get close to the player and attack them.
@@ -114,6 +134,7 @@ Project is: _in progress_
 ## Room for Improvement
 
 Room for improvement:
+- Banalce - at the moment the game is not balanced at all
 - Improve the Inventory to be less messy (Sorting and stacking)
 - Imporove UI 
 - Add sounds
@@ -123,7 +144,7 @@ Room for improvement:
 
 ## Acknowledgements
 - This project was inspired by Rogue: Exploring the Dungeons of Doom
-- This project was based on [this tutorial](https://rogueliketutorials.com/tutorials/tcod/v2/).
+- This project was initially based on [this tutorial](https://rogueliketutorials.com/tutorials/tcod/v2/).
 - Porting from Python to Unity was done with help of [The Sleepy Koala](https://www.youtube.com/@thesleepykoala).
 - Main Menu background - found in google, unfortunately I forgot to write down the author, so if you find it somehow please let me know so I can properly mentioned them. For now it is only a placeholder but I really like it so it would be nice to keep it as is.
 
