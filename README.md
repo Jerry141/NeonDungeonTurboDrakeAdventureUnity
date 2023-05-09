@@ -128,8 +128,11 @@ Armor:
 
 
 ## Project Status
-Project is: _in progress_
+Project is: _in progress_ (indefinitely)
 
+Current focus:
+- UI - Inventory, Drop Menu, Main Menu, Death Menu, Character information etc.
+- Adding new menus (Death menu, info menu, equipment menu - separate from inventory)
 
 ## Room for Improvement
 
