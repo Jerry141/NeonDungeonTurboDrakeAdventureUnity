@@ -49,25 +49,25 @@ The game is possible to test here: [Unity Play](https://play.unity.com/mg/other/
 
 ## Screenshots
 
-<img width="1578" alt="start" src="https://github.com/Jerry141/NeonDungeonTurboDrakeAdventureUnity/assets/38975789/419450dd-91dd-4fca-80d6-97c9a5d55d6e">
+- <img width="1578" alt="start" src="https://github.com/Jerry141/NeonDungeonTurboDrakeAdventureUnity/assets/38975789/419450dd-91dd-4fca-80d6-97c9a5d55d6e">
 Start of the game
 
-<img width="289" alt="image" src="https://github.com/Jerry141/NeonDungeonTurboDrakeAdventureUnity/assets/38975789/7fe2f58a-660d-45a1-89e3-86bb66fb03da">
+- <img width="289" alt="image" src="https://github.com/Jerry141/NeonDungeonTurboDrakeAdventureUnity/assets/38975789/7fe2f58a-660d-45a1-89e3-86bb66fb03da">
 [!] - Blood Vial, [%] - Enemy's Corpse
 
-<img width="1574" alt="image" src="https://github.com/Jerry141/NeonDungeonTurboDrakeAdventureUnity/assets/38975789/4f30bfd1-9306-4079-b22d-eb6031da6555">
+- <img width="1574" alt="image" src="https://github.com/Jerry141/NeonDungeonTurboDrakeAdventureUnity/assets/38975789/4f30bfd1-9306-4079-b22d-eb6031da6555">
 Level Up menu
 
-<img width="335" alt="image" src="https://github.com/Jerry141/NeonDungeonTurboDrakeAdventureUnity/assets/38975789/f1b0724e-d47e-438f-9b95-166214bf889d">
+- <img width="335" alt="image" src="https://github.com/Jerry141/NeonDungeonTurboDrakeAdventureUnity/assets/38975789/f1b0724e-d47e-438f-9b95-166214bf889d">
 Stairs down to lower level
 
-<img width="497" alt="image" src="https://github.com/Jerry141/NeonDungeonTurboDrakeAdventureUnity/assets/38975789/c0844646-4988-4572-bbff-1ffbcc44963a">
+- <img width="497" alt="image" src="https://github.com/Jerry141/NeonDungeonTurboDrakeAdventureUnity/assets/38975789/c0844646-4988-4572-bbff-1ffbcc44963a">
 Inventory
 
-<img width="1574" alt="image" src="https://github.com/Jerry141/NeonDungeonTurboDrakeAdventureUnity/assets/38975789/563369d0-f012-4e58-9d00-d2281f426ce3">
+- <img width="1574" alt="image" src="https://github.com/Jerry141/NeonDungeonTurboDrakeAdventureUnity/assets/38975789/563369d0-f012-4e58-9d00-d2281f426ce3">
 Character information
 
-<img width="1533" alt="image" src="https://github.com/Jerry141/NeonDungeonTurboDrakeAdventureUnity/assets/38975789/9d1dc424-560e-4780-9a30-0285d4bb3412">
+- <img width="1533" alt="image" src="https://github.com/Jerry141/NeonDungeonTurboDrakeAdventureUnity/assets/38975789/9d1dc424-560e-4780-9a30-0285d4bb3412">
 Message history
 
 ## Manual
