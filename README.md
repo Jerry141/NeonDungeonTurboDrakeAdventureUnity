@@ -41,7 +41,7 @@ The game is possible to test here: [Unity Play](https://play.unity.com/mg/other/
 ### Equipment:
 - Neon Dagger [/] - Simple dagger infused with Neon, probably due to long exposure within the dungeon. Great for dealing with small threats
 - Neon Saber [/] - Saber greatly infused with Neon, can be found in lower levels of the dungeon, probably was used by previous residents of this place, an elegant weapon for a more civilized age.
-- Pickaxe [/] - Simple pickaxe covered with neon. Used by to mine the Neon from the dungeon.
+- Pickaxe [/] - Simple pickaxe covered with neon. Used to mine the Neon from the dungeon.
 - Leather Jacket [ [ ] - Light leather jacket. It is more about style than defense, but still better than nothing.
 - Enforced Jacket [ [ ] - Leather Jacket enforced with small amount of Neon. Provides moderate defense.
 - Vampire Robe [ [ ] - Robe designed by the high Vampires, provides good defense to the Vampire. Humans tried to use those but it only slows them down.
