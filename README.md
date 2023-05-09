@@ -93,8 +93,8 @@ Inventory:
 - Go to the next level - [Enter] - first you need to stand on [>]
 - Open message log - [v]
 
-[C] - Character information
-[Esc] - Escape menu (not fully functional yet)
+- [C] - Character information
+- [Esc] - Escape menu (not fully functional yet)
 
 ### Combat:
 The Combat in NDTDA is turn based. Once player moves/pick up items/uses item it counts as a turn. After that every enemy on the map (if visible) takes their turn to get close to the player and attack them.
