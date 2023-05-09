@@ -74,11 +74,10 @@ public class UIManager : MonoBehaviour
 
         if (SaveManager.instance.Save.SavedFloor is 0)
         {
-            AddMessage("Turbo Player rise once again to reclaim his powers!", "#f222ff");
-        }
-        else
-        {
-            AddMessage("Welcome back Player!", "#F222FF");
+            AddMessage("Turbo Drake (also known as the Player) rise once again to reclaim his powers!", "#f222ff");
+            AddMessage("In the upper levels of the dungeon, a community of [C]ommoners thrives.", "#59CBE8");
+            AddMessage("Resourceful and tenacious, they have carved out a living amongst the ruins and forgotten treasures.", "#59CBE8");
+
         }
     }
 
@@ -98,7 +97,23 @@ public class UIManager : MonoBehaviour
 
     public void SetDungeonFloorText(int floor)
     {
-        dungeonFloorText.text = $"Dungeon floor: {floor}";
+        if (SaveManager.instance.Save.SavedFloor < 2)
+        {
+            dungeonFloorText.text = $"Floor: {floor} (Upper Dungeon)";
+        }
+        else if (SaveManager.instance.Save.SavedFloor < 6)
+        {
+            dungeonFloorText.text = $"Floor: {floor} (Templar Outpost)";
+        }
+        else if (SaveManager.instance.Save.SavedFloor < 8)
+        {
+            dungeonFloorText.text = $"Floor: {floor} (Neon Mines)";
+        }
+        else
+        {
+            dungeonFloorText.text = $"Floor: {floor} (Neon Sanctuary)";
+        }
+        
     }
 
     // toggling Menu

@@ -45,6 +45,7 @@ sealed class ProcGen : MonoBehaviour
         new Tuple<int, string, int>(5, "Templar", 30),
         new Tuple<int, string, int>(7, "Miner", 60), new Tuple<int, string, int>(7, "Supervisor", 20),
         new Tuple<int, string, int>(9, "Vampire Hunter", 100),
+        new Tuple<int, string, int>(9, "Neon Addict", 50)
     };
 
     public int GetMaxValueForFloor(List<Tuple<int, int>> values, int floor)
